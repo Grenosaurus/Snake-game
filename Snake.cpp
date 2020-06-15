@@ -68,7 +68,8 @@ private:
 public:
     Point()
     {
-        x = y = POINT;
+        x = POINT;
+        y = POINT;
     }
 
     Point(int x, int y)
