@@ -1,5 +1,5 @@
 /*
- Snake game for Windows OS (Made: Jauaries).
+ Snake game for Windows OP.
 */
 
 // C++ packets
@@ -10,14 +10,16 @@
 #include <dos.h> // Not found for Linux
 #include <time.h>
 #include <cstdlib>
+#include <thread>
 
 // Definitions used in the program
-#define MAXCELLSIZE 100
+#define MAXCELLSIZE 200
 #define MINCELLSIZE 0
 #define SLEEPTIME 25
 #define MAXFRAMERATEX 119
 #define MAXFRAMERATEY 29
 #define POINT 10
+#define FILE_PATH "C:\\Users\\jauar\\Music\\CantinaBand60.wav" // Path to the music files
 
 
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -33,7 +35,14 @@ void goXY(int x, int y)
 }
 
 
-// Hidding the cursor (Taken from: http://www.cplusplus.com/forum/beginner/90498/)
+// Setting background music to the game
+void backgroundMusic()
+{
+    PlaySound(TEXT(FILE_PATH), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+}
+
+
+// Hidding the cursor stick (Taken from: http://www.cplusplus.com/forum/beginner/90498/)
 void setCursor(bool visible, DWORD size)
 {
     if (size == 0)
@@ -54,8 +63,7 @@ void setCursor(bool visible, DWORD size)
 class Point
 {
 private:
-    int x;
-    int y;
+    int x, y;
 
 public:
     Point()
@@ -142,7 +150,7 @@ public:
      // Debugging window
     void debug()
     {
-        std::cout << "(" << x << "," << y << ")" << std::endl;
+        std::cout << "(" << x << ", " << y << ")" << std::endl;
     }
 
     void copyPosition(Point * p)
@@ -182,8 +190,7 @@ class Snake
 private:
     Point * cell[MAXCELLSIZE];
     Point food; // Food cell
-    int cellSize; // Snake size
-    int gameState; // State of the game (0 => Game OVER | 1 => Game ON)
+    int cellSize, gameState; // Snake size & State of the game (0 => Game OVER | 1 => Game ON)
     char direction; // direction of the head cell
 
 public:
@@ -318,10 +325,10 @@ public:
 
         food.drawFood();
 
-        Sleep(SLEEPTIME); // Defiens how fast the operates
+        Sleep(SLEEPTIME); // Defines game speed
     }
 
-    // Debugging
+    // Debugging | Checking the cells movement
     void debug()
     {
         for (int i = 0; i < cellSize; i++)
@@ -351,6 +358,8 @@ public:
 // Main function
 int main()
 {
+    std::thread t(backgroundMusic); // Background music
+
     setCursor(0, 0);
     srand((unsigned)time(NULL));
 
@@ -390,6 +399,8 @@ int main()
         snake.move();
     }
     while (operation != 'e');
+
+    t.join();
 
     return 0;
 }
