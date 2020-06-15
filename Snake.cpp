@@ -399,7 +399,7 @@ int main()
 
         snake.move();
     }
-    while (operation != 'e');
+    while (operation != 'e'); // 'e' kills the game
 
     return 0;
 }
