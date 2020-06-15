@@ -1,5 +1,5 @@
 /*
- Snake game for Windows OP.
+ Snake game for Windows OS.
 */
 
 // C++ packets
