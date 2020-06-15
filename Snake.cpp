@@ -1,5 +1,5 @@
 /*
- Snake game for Windows OS.
+ Snake game for Windows OS (Made: Jauaries).
 */
 
 // C++ packets
@@ -38,7 +38,7 @@ void goXY(int x, int y)
 // Setting background music to the game
 void backgroundMusic()
 {
-    PlaySound(TEXT(FILE_PATH), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC);
+    PlaySound(TEXT(FILE_PATH), NULL, SND_FILENAME | SND_LOOP | SND_ASYNC); // Repeats the music after finnishing
 }
 
 
@@ -359,7 +359,7 @@ public:
 // Main function
 int main()
 {
-    std::thread t(backgroundMusic); // Background music
+    backgroundMusic(); // Background music
 
     setCursor(0, 0);
     srand((unsigned)time(NULL));
@@ -400,8 +400,6 @@ int main()
         snake.move();
     }
     while (operation != 'e');
-
-    t.join();
 
     return 0;
 }
