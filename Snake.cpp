@@ -19,7 +19,7 @@
 #define MAXFRAMERATEX 119
 #define MAXFRAMERATEY 29
 #define POINT 10
-#define FILE_PATH "C:\\Users\\jauar\\Music\\CantinaBand60.wav" // Path to the music files
+#define FILE_PATH "Music\\CantinaBand60.wav" // Path to the music files
 
 
 HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
