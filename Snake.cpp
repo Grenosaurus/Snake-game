@@ -42,7 +42,7 @@ void backgroundMusic()
 }
 
 
-// Hidding the cursor stick (Taken from: http://www.cplusplus.com/forum/beginner/90498/)
+// Hidding the cursor stick
 void setCursor(bool visible, DWORD size)
 {
     if (size == 0)
